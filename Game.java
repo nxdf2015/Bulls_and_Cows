@@ -2,7 +2,7 @@ package bullscows;
 
 import java.util.HashSet;
 import java.util.Random;
-import java.util.Scanner;
+
 
 public class Game {
     private String secret;
@@ -32,14 +32,15 @@ public class Game {
        return new int[] {bull, cow};
     }
 
-    public void generateSecret(){
+    public void generateSecret(int numberSymbols){
         Random random = new Random();
-        HashSet<Integer> set = new HashSet<>();
+        HashSet<Character> set = new HashSet<>();
         String secret = "";
+        Symbols symbols = new Symbols(numberSymbols);
         while(set.size() < size){
-            int value;
+            char value;
             do {
-                value = random.nextInt(10);
+                value = symbols.next();
             } while( set.contains(value));
             set.add(value);
             secret += value;
